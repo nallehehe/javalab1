@@ -10,6 +10,7 @@ public class Main {
         Menu menu = new Menu();
 
         //testing out
+        //NOW??
 
 
         while (true){

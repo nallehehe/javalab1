@@ -10,7 +10,9 @@ public class Main {
 
         Menu menu = new Menu();
 
+        double accountBalance = 100000;
 
+        boolean payment = true;
 
         while (true)
         {
@@ -18,11 +20,10 @@ public class Main {
             try {
                 menu.managerMenu();
 
-                double accountBalance = 100000;
-
                 userInput = scanner.nextInt();
 
                 if (userInput == 1){
+                    System.out.println("Total account balance: " + accountBalance + " kr");
                     menu.EmployeeMenu();
                     userInput = scanner.nextInt();
                     double tax = 0.70;
@@ -32,11 +33,24 @@ public class Main {
                     for (int i = 0; i < userInput; i++) {
                         System.out.println("Employee #" + (i + 1) + " salary: ");
                         arr[i] = scanner.nextInt();
+
+                        double afterTax = arr[i] * tax;
+
+                        if (accountBalance >= afterTax) {
+                            accountBalance -= afterTax;
+                        }
+                        else {
+                            System.out.println("There are not sufficient enough funds to pay employee #" + (i + 1) + ".");
+                            payment = false;
+                        }
                     }
 
-                    System.out.println("You have now paid: ");
-                    for (int i = 0; i < userInput; i++) {
-                        System.out.print("Employee #" + (i + 1) + ": Before tax: " + arr[i] + " kr " + "After tax: " + (arr[i] * tax) + " kr\n");
+                    if (payment) {
+                        System.out.println("You have now paid: ");
+                        System.out.println("Total account balance: " + accountBalance);
+                        for (int i = 0; i < userInput; i++) {
+                            System.out.print("Employee #" + (i + 1) + " - Before tax: " + arr[i] + " kr" + " After tax: " + (arr[i] * tax) + " kr\n");
+                        }
                     }
                 }
                 else if (userInput == 2) {
@@ -45,13 +59,45 @@ public class Main {
 
                     double vat = userInput * 0.25;
                     double afterTax = userInput - vat;
-                    double addToBalance = afterTax + accountBalance;
 
-                    System.out.println("Total sum: " + userInput + " kr \n" + "Total VAT: " + (vat) + " kr" + "\nNet amount: " + (afterTax) + " kr" + "\nTotal account balance: " + addToBalance + " kr");
+                    accountBalance += afterTax;
+
+                    System.out.println("Total sum: " + userInput + " kr \n" + "Total VAT: " + (vat) + " kr" + "\nNet amount: " + (afterTax) + " kr" + "\nTotal account balance: " + accountBalance + " kr");
                 }
 
                 else if (userInput == 3){
+                    System.out.println("Total account balance: " + accountBalance + " kr");
+                    menu.invoicePayer();
+                    userInput = scanner.nextInt();
 
+                    double invoiceVat = 0.75;
+
+                    int[] arr = new int [userInput];
+
+                    System.out.println("Total account balance: " + accountBalance + " kr");
+                    for (int i = 0; i < userInput; i++) {
+
+                        System.out.println("Invoice #" + (i + 1) + " payment: ");
+                        arr[i] = scanner.nextInt();
+
+                        double afterVat = arr[i] * invoiceVat;
+
+                        if (accountBalance >= afterVat) {
+                            accountBalance -= afterVat;
+                        }
+                        else {
+                            System.out.println("There are not sufficient enough funds to pay for invoice #" + (i + 1) + ".");
+                            payment = false;
+                        }
+                    }
+
+                    if (payment) {
+                        System.out.println("You have now paid: ");
+                        System.out.println("Total account balance: " + (accountBalance) + " kr");
+                        for (int i = 0; i < userInput; i++) {
+                            System.out.print("Invoice #" + (i + 1) + " - Before tax: " + arr[i] + " kr" + " After tax: " + (arr[i] * invoiceVat) + " kr\n");
+                        }
+                    }
                 }
 
                 else if (userInput == 4){

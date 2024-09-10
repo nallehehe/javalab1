@@ -13,4 +13,8 @@ public class Menu {
     public void invoiceCreator(){
         System.out.println("What's the total sum of the new invoice?");
     }
+
+    public void invoicePayer() {
+        System.out.println("How many invoices would you like to pay?");
+    }
 }

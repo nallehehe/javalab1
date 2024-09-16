@@ -12,7 +12,7 @@ public class Main {
 
         double accountBalance = 100000;
 
-        boolean payment = true;
+        boolean payment = false;
 
         while (true)
         {
@@ -33,24 +33,12 @@ public class Main {
                     for (int i = 0; i < userInput; i++) {
                         System.out.println("Employee #" + (i + 1) + " salary: ");
                         arr[i] = scanner.nextInt();
-
-                        double afterTax = arr[i] * tax;
-
-                        if (accountBalance >= afterTax) {
-                            accountBalance -= afterTax;
-                        }
-                        else {
-                            System.out.println("There are not sufficient enough funds to pay employee #" + (i + 1) + ".");
-                            payment = false;
-                        }
                     }
 
-                    if (payment) {
-                        System.out.println("You have now paid: ");
-                        System.out.println("Total account balance: " + accountBalance);
-                        for (int i = 0; i < userInput; i++) {
-                            System.out.print("Employee #" + (i + 1) + " - Before tax: " + arr[i] + " kr" + " After tax: " + (arr[i] * tax) + " kr\n");
-                        }
+                    System.out.println("You have now paid: ");
+                    System.out.println("Total account balance: " + accountBalance);
+                    for (int i = 0; i < userInput; i++) {
+                        System.out.print("Employee #" + (i + 1) + " - Before tax: " + arr[i] + " kr" + " After tax: " + (arr[i] * tax) + " kr\n");
                     }
                 }
                 else if (userInput == 2) {
@@ -73,6 +61,7 @@ public class Main {
                     double invoiceVat = 0.75;
 
                     int[] arr = new int [userInput];
+                    boolean[] successfulPayment = new boolean [userInput];
 
                     System.out.println("Total account balance: " + accountBalance + " kr");
                     for (int i = 0; i < userInput; i++) {
@@ -84,19 +73,23 @@ public class Main {
 
                         if (accountBalance >= afterVat) {
                             accountBalance -= afterVat;
+                            successfulPayment[i] = true;
                         }
                         else {
                             System.out.println("There are not sufficient enough funds to pay for invoice #" + (i + 1) + ".");
-                            payment = false;
+                            successfulPayment[i] = false;
+                            payment = true;
                         }
                     }
 
                     if (payment) {
                         System.out.println("You have now paid: ");
-                        System.out.println("Total account balance: " + (accountBalance) + " kr");
                         for (int i = 0; i < userInput; i++) {
-                            System.out.print("Invoice #" + (i + 1) + " - Before tax: " + arr[i] + " kr" + " After tax: " + (arr[i] * invoiceVat) + " kr\n");
+                            if (successfulPayment[i]) {
+                                System.out.print("Invoice #" + (i + 1) + " - Before tax: " + arr[i] + " kr" + " After tax: " + (arr[i] * invoiceVat) + " kr\n");
+                            }
                         }
+                        System.out.println("Total account balance: " + (accountBalance) + " kr");
                     }
                 }
 

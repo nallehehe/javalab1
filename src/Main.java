@@ -12,7 +12,7 @@ public class Main {
 
         double accountBalance = 100000;
 
-        boolean payment = false;
+        boolean noPayment = false;
 
         while (true)
         {
@@ -78,11 +78,11 @@ public class Main {
                         else {
                             System.out.println("There are not sufficient enough funds to pay for invoice #" + (i + 1) + ".");
                             successfulPayment[i] = false;
-                            payment = true;
+                            noPayment = true;
                         }
                     }
 
-                    if (payment) {
+                    if (noPayment) {
                         System.out.println("You have now paid: ");
                         for (int i = 0; i < userInput; i++) {
                             if (successfulPayment[i]) {

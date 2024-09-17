@@ -23,7 +23,6 @@ public class Main {
                 userInput = scanner.nextInt();
 
                 if (userInput == 1){
-                    System.out.println("Total account balance: " + accountBalance + " kr");
                     menu.EmployeeMenu();
                     userInput = scanner.nextInt();
                     double tax = 0.70;
@@ -85,7 +84,7 @@ public class Main {
                         System.out.println("You have now paid: ");
                         for (int i = 0; i < userInput; i++) {
                             if (successfulPayment[i]) {
-                                System.out.print("Invoice #" + (i + 1) + " - Before tax: " + arr[i] + " kr" + " After tax: " + (arr[i] * invoiceVat) + " kr\n");
+                                System.out.print("Invoice #" + (i + 1) + " - Before VAT: " + arr[i] + " kr" + " After VAT: " + (arr[i] * invoiceVat) + " kr\n");
                             }
                         }
                         System.out.println("Total account balance: " + (accountBalance) + " kr");

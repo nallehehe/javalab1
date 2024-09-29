@@ -76,8 +76,9 @@ public class Main {
                       varför använde jag mig utav två arrays?
 
                       jag ville bara ha ett sätt att kunna separera vad som gick igenom mitt if-villkor
-                      och vad som inte gjorde det, det är främst bara ett estetiskt val och hur jag personligen
-                      tänker att ett program hade fungerat där de separerar det som lyckades och det som olyckades*/
+                      och vad som inte gjorde det för med endast en array verkade det inte möjligt (vad jag vet och google vet)
+                      det är främst bara ett estetiskt val och hur jag personligen tänker att ett program
+                      hade fungerat där de separerar det som lyckades och det som olyckades*/
 
                     int[] arr = new int [userInput];
                     boolean[] successfulPayment = new boolean [userInput];
